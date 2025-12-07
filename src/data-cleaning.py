@@ -29,7 +29,7 @@ def remove_non_positive_values(df):
     return df
 
 def main():
-    raw_path = "data/raw/_sales_data_raw.csv"
+    raw_path = "data/raw/sales_data_raw.csv"
     cleaned_path = "data/processed/sales_data_cleaned.csv"
 
     df_raw = load_data(raw_path)
