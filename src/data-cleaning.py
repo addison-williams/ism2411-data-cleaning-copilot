@@ -23,3 +23,8 @@ def handle_missing_values(df):
     df = df.dropna(subset=['price', 'qty'])
     return df
 
+# remove rows with non-positive values in 'price' or 'qty'
+def remove_non_positive_values(df):
+    df = df[(df['price'] > 0) & (df['qty'] > 0)]
+    return df
+
