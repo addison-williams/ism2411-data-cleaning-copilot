@@ -28,3 +28,17 @@ def remove_non_positive_values(df):
     df = df[(df['price'] > 0) & (df['qty'] > 0)]
     return df
 
+def main():
+    raw_path = "data/raw/_sales_data_raw.csv"
+    cleaned_path = "data/processed/sales_data_cleaned.csv"
+
+    df_raw = load_data(raw_path)
+    df_clean = standardize_column_names(df_raw)
+    df_clean = clean_text_fields(df_clean)
+    df_clean = handle_missing_values(df_clean)
+    df_clean = remove_non_positive_values(df_clean)
+    df_clean.to_csv(cleaned_path, index=False)  
+    print(f"Cleaned data saved to {cleaned_path}")
+
+if __name__ == "__main__":
+    main()
