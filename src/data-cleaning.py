@@ -7,7 +7,7 @@ def load_data(file_path):
 # Standardize column names and return the modified DataFrame
 def standardize_column_names(df):
     # Standardize column names to lowercase and replace spaces with underscores
-    df.columns = df.columns.str.lower().str.replace(' ', '_')
+    df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
     return df
 
 # Clean text fields in the DataFrame
@@ -25,6 +25,8 @@ def handle_missing_values(df):
 
 # remove rows with non-positive values in 'price' or 'qty'
 def remove_non_positive_values(df):
+    df["price"] = pd.to_numeric(df["price"], errors="coerce")
+    df["qty"] = pd.to_numeric(df["qty"], errors="coerce")
     df = df[(df['price'] > 0) & (df['qty'] > 0)]
     return df
 
